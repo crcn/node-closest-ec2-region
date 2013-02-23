@@ -29,7 +29,22 @@ var server = express();
 
 server.get("/ec2/region", function(req, res) {
   whichRegion(req, function(err, region) {
-    res.end("region");
+    res.end(region);
   });
 });
 
+```
+
+### Custom Geo data
+
+```javascript
+whichRegion = require("whichRegion")({
+  cityDataPath: "/path/to/city/data"
+});
+
+var ip = "xxx.xxx.xx.xx";
+
+whichRegion(ip, function(err, regionName) {
+    
+});
+```
