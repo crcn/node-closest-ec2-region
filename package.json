@@ -1,0 +1,27 @@
+{
+  "name": "whichregion",
+  "version": "0.0.0",
+  "description": "node-whichregion ================",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/crcn/node-whichregion.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "d8d7875ce8891ac99bc048e8851cc88345bc59a2",
+  "dependencies": {
+    "comerr": "0.0.x",
+    "geoip": "0.4.x",
+    "sift": "0.0.x"
+  },
+  "devDependencies": {
+    "express": "3.1.x",
+    "request": "2.14.x",
+    "expect.js": "0.2.x"
+  }
+}
