@@ -1,7 +1,8 @@
 var whichRegion = require("../")(),
 express = require("express"),
 expect = require("expect.js"),
-comerr = require("comerr");
+comerr = require("comerr"),
+request = require("request");
 
 describe("whichregion", function() {
 
@@ -9,14 +10,15 @@ describe("whichregion", function() {
 
   before(function() {
     server = express();
-    server.listen(port);
 
     server.get("/findIp", function(req, res) {
       whichRegion(req, function(err, region) {
-        if(err) return res.end("");
+        if(err) return res.end("err");
         res.end(region);
       });
     });
+
+    server.listen(port);
   });
 
   /*it("should be able to find a region", function(done) {
@@ -26,6 +28,13 @@ describe("whichregion", function() {
   it("should should return an invalid error", function(done) {
     whichRegion("abcde", function(err, region) {
       expect(err).to.be.an(comerr.IncorrectType);
+      done();
+    });
+  });
+
+  it("should not be able to find IP", function(done) {
+    whichRegion("0.0.0.0", function(err, region) {
+      expect(err).to.be.an(Error);
       done();
     });
   });
@@ -97,6 +106,18 @@ describe("whichregion", function() {
         expect(region).to.be(info.region);
         done();
       });
+    });
+  });
+
+
+  /**
+   */
+
+
+  it("can fetch region from express route, but error because of local ip", function(done) {
+    request.get("http://localhost:" + port + "/findIp", function(err, request, body) {
+      expect(body).to.be("err");
+      done();
     });
   });
 });
