@@ -50,7 +50,7 @@ whichRegion(ip, function(err, regionName) {
 ```
 
 
-### With [node-ectwo](/crcn/node-ectwo)
+### With [node-ectwo](http://github.com/crcn/node-ectwo)
 
 ```javascript
 
