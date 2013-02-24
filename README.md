@@ -48,3 +48,14 @@ whichRegion(ip, function(err, regionName) {
     
 });
 ```
+
+
+### With [node-ectwo](/crcn/node-ectwo)
+
+```javascript
+
+whichRegion(ip, function(err, regionName) {
+  ectwo.regions.findOne({ name: regionName || "us-east-1" }, function(err, region) {
+    //do stuff with the target region
+  });
+});
