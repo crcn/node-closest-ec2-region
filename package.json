@@ -19,6 +19,9 @@
     "geoip": "0.4.x",
     "sift": "0.0.x"
   },
+  "scripts": {
+    "test":"mocha ./test"
+  },
   "devDependencies": {
     "express": "3.1.x",
     "request": "2.14.x",
