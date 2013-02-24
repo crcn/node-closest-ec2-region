@@ -9,11 +9,11 @@ brew install libgeoip
 ### JS Example
 
 ```javascript
-whichRegion = require("whichRegion")();
+closestEC2Region = require("closest-ec2-region")();
 
 var ip = "xxx.xxx.xx.xx";
 
-whichRegion(ip, function(err, regionName) {
+closestEC2Region(ip, function(err, regionName) {
     
 });
 ```
@@ -23,12 +23,12 @@ whichRegion(ip, function(err, regionName) {
 ```javascript
 
 var express = require("express"),
-whichRegion = require("whichregion")();
+closestEC2Region = require("closest-ec2-region")();
 
 var server = express();
 
 server.get("/ec2/region", function(req, res) {
-  whichRegion(req, function(err, region) {
+  closestEC2Region(req, function(err, region) {
     res.end(region);
   });
 });
@@ -38,13 +38,13 @@ server.get("/ec2/region", function(req, res) {
 ### Custom Geo data
 
 ```javascript
-whichRegion = require("whichRegion")({
+closestEC2Region = require("closest-ec2-region")({
   cityDataPath: "/path/to/city/data"
 });
 
 var ip = "xxx.xxx.xx.xx";
 
-whichRegion(ip, function(err, regionName) {
+closestEC2Region(ip, function(err, regionName) {
     
 });
 ```
@@ -54,7 +54,7 @@ whichRegion(ip, function(err, regionName) {
 
 ```javascript
 
-whichRegion(ip, function(err, regionName) {
+closestEC2Region(ip, function(err, regionName) {
   ectwo.regions.findOne({ name: regionName || "us-east-1" }, function(err, region) {
     //do stuff with the target region
   });

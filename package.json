@@ -1,5 +1,5 @@
 {
-  "name": "whichregion",
+  "name": "closest-ec2-region",
   "version": "0.0.1",
   "description": "node-whichregion ================",
   "main": "./lib/index.js",

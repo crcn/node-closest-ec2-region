@@ -1,10 +1,10 @@
-var whichRegion = require("../")(),
+var closestEC2Region = require("../")(),
 express = require("express"),
 expect = require("expect.js"),
 comerr = require("comerr"),
 request = require("request");
 
-describe("whichregion", function() {
+describe("closestEC2Region", function() {
 
   var server, port = 80321;
 
@@ -12,7 +12,7 @@ describe("whichregion", function() {
     server = express();
 
     server.get("/findIp", function(req, res) {
-      whichRegion(req, function(err, region) {
+      closestEC2Region(req, function(err, region) {
         if(err) return res.end("err");
         res.end(region);
       });
@@ -26,14 +26,14 @@ describe("whichregion", function() {
   });*/
 
   it("should should return an invalid error", function(done) {
-    whichRegion("abcde", function(err, region) {
+    closestEC2Region("abcde", function(err, region) {
       expect(err).to.be.an(comerr.IncorrectType);
       done();
     });
   });
 
   it("should not be able to find IP", function(done) {
-    whichRegion("0.0.0.0", function(err, region) {
+    closestEC2Region("0.0.0.0", function(err, region) {
       expect(err).to.be.an(Error);
       done();
     });
@@ -101,7 +101,7 @@ describe("whichregion", function() {
     var info = ipTests[ip];
 
     it(info.name + " IP should point correct region", function(done) {
-      whichRegion(ip, function(err, region) {
+      closestEC2Region(ip, function(err, region) {
         if(err) return done(err);
         expect(region).to.be(info.region);
         done();
